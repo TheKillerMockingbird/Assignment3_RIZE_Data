@@ -1,0 +1,8 @@
+Why a stack is the right choice for undo/redo:
+A stack follows the Last-In, First-Out (LIFO) principle. When a user performs actions, the most recent action is the one they usually want to undo first. Pushing each new action onto the undo stack and popping it when the user chooses “Undo” naturally reverses the order of actions. The redo stack works the same way in reverse: an undone action is pushed onto the redo stack so it can be reapplied later. This LIFO behavior matches exactly how people expect undo and redo to work.
+
+Why a queue is better suited for the help desk:
+A help desk serves customers in the order they arrive — First-In, First-Out (FIFO). A queue is designed for exactly this pattern. New customers are enqueued at the rear, and the next customer to be helped is always dequeued from the front. This guarantees fairness: no one jumps the line. Using a stack would reverse the order and serve the newest customer first, which would be unfair and confusing in a real ticketing system.
+
+How the implementations differ from Python’s built-in lists:
+Python lists can be used as stacks (with append/pop) or queues (with append/pop(0)), but they are not ideal for large queues because removing from the front of a list is O(n). Our linked-list versions use Node objects with front/rear (or top) pointers. This makes both enqueue/dequeue and push/pop true O(1) operations. We also gain explicit control over memory and a clearer understanding of how these data structures work under the hood, which is the main learning goal of the assignment.
